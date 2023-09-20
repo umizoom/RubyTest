@@ -1,0 +1,22 @@
+name: Save licenses report
+
+on:
+  push:
+    branches:
+      - main
+    tags-ignore:
+      - '**'
+  workflow_dispatch:
+
+concurrency:
+  group: licenses-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  license_report:
+    steps:
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - run: licensed cache 
+
