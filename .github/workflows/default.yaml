@@ -20,5 +20,9 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-      - run: licensed cache 
+      - run: echo "licensed_path=$(bundle exec which licensed)\n" >> $GITHUB_OUTPUT
+        id: get_licensed_path
+      - run: $licensed_path cache
+        env:
+          licensed_path: ${{steps.get_licensed_path.ouputs.licensed_path}}
 
