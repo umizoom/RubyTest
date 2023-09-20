@@ -14,6 +14,7 @@ concurrency:
 
 jobs:
   license_report:
+    runs-on: ubuntu-latest
     steps:
       - uses: ruby/setup-ruby@v1
         with:
